@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, Routes, Route, useNavigate } from "react-router-dom";
-import { message} from "antd";
+import { message } from "antd";
 
 import {
   FaFacebookF,
@@ -18,19 +18,14 @@ import { slugify } from "../../utils";
 
 const getServiceData = ServiceData;
 
-
 const FooterOne = ({ parentClass }) => {
-
   const navigate = useNavigate();
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     // e.preventDefault();
 
-    
     message.success(`Submitted successfully.`);
     // navigate('/results');
-    
   };
-  
 
   return (
     <footer className={`footer-area ${parentClass}`}>
@@ -59,8 +54,13 @@ const FooterOne = ({ parentClass }) => {
                     Thank you for visiting Impressions.one. We would love to
                     connect with you!
                   </p>
-                  <iframe className="iframe1" name="hiddenFrame"></iframe> 
-                  <form method="post" action="http://127.0.0.1:5000/emails" onSubmit={handleSubmit} target="hiddenFrame">
+                  <iframe className="iframe1" name="hiddenFrame"></iframe>
+                  <form
+                    method="post"
+                    action="https://impressionsone.herokuapp.com/emails"
+                    onSubmit={handleSubmit}
+                    target="hiddenFrame"
+                  >
                     <div className="input-group">
                       <span className="mail-icon">
                         <FaEnvelopeOpen />{" "}
@@ -70,11 +70,8 @@ const FooterOne = ({ parentClass }) => {
                         className="form-control"
                         placeholder="Email address"
                         name="email"
-                        
-                        
-                        
                       />
-                      <button className="subscribe-btn" type="submit" >
+                      <button className="subscribe-btn" type="submit">
                         Submit
                       </button>
                     </div>

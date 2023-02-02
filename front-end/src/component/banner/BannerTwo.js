@@ -1,17 +1,14 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { AnimationOnScroll } from "react-animation-on-scroll";
-import { FaBeer } from 'react-icons/fa';
+import { FaBeer } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import App from "../../App";
 import { InboxOutlined } from "@ant-design/icons";
-import { BackTop } from 'antd';
+import { BackTop } from "antd";
 import ScrollToTop from "../scrollToTop/ScrollToTop";
-import {icons} from "@ant-design/icons";
+import { icons } from "@ant-design/icons";
 import { message, Upload } from "antd";
 const { Dragger } = Upload;
-
-
-
 
 const BannerTwo = () => {
   // const [src,setSrc] = useState(null)
@@ -23,18 +20,15 @@ const BannerTwo = () => {
     method: "POST",
     crossOrigin: "anonymous",
     multiple: false,
-    action: "http://127.0.0.1:5000/uploads",
+    action: "https://impressionsone.herokuapp.com/uploads",
     onChange(info) {
       const { status } = info.file;
-      setCount(0)
+      setCount(0);
       if (status !== "uploading") {
         console.log(info.file, info.fileList);
-        
-        
       }
       if (status === "done") {
-        setCount(1)
-        
+        setCount(1);
 
         message.success(`${info.file.name} file uploaded successfully.`);
       } else if (status === "error") {
@@ -43,26 +37,20 @@ const BannerTwo = () => {
     },
     onDrop(e) {
       console.log("Dropped files", e.dataTransfer.files);
-      setCount(0)
-      console.log(count)
+      setCount(0);
+      console.log(count);
     },
   };
 
   return (
-    
     <div className="banner banner-style-2">
       <div className="container-fluid">
         <div className="row align-items-center">
           <div className="col-lg-6">
             <div className="banner-content">
               <h1 className="title">Analyse Youtube Thumbnails</h1>
-              
-              <div>
-              
-      
-  
-    
-  </div>
+
+              <div></div>
 
               {/* <form>
               <div class="drag-image">
@@ -78,15 +66,15 @@ const BannerTwo = () => {
                   <Dragger
                     {...props}
                     listType="picture"
-                    
                     maxCount={1}
                     className="drag-image"
                     accept=".png,.jpg,.jpeg,"
                   >
-                    <img className="icon"
-                        src={process.env.PUBLIC_URL + "/images/up-arrow.png"}
-                      />
-                      {/* <img className="iconlight"
+                    <img
+                      className="icon"
+                      src={process.env.PUBLIC_URL + "/images/up-arrow.png"}
+                    />
+                    {/* <img className="iconlight"
                         src={process.env.PUBLIC_URL + "/images/uploadLight.png"}
                       />
                       <img className="icondark"
@@ -95,11 +83,8 @@ const BannerTwo = () => {
                       <img className="icondark2"
                         src={process.env.PUBLIC_URL + "/images/uploadDark2.png"}
                       /> */}
-                    
 
-                    <p className="upload-text">
-                      Select or drop your thumbnail
-                    </p>
+                    <p className="upload-text">Select or drop your thumbnail</p>
                     <p className="ant-upload-hint"></p>
 
                     {/* <Button onClick={sendAnt}>Submit</Button> */}
@@ -116,23 +101,17 @@ const BannerTwo = () => {
                   >
                     Analyse
                   </Link> */}
-                  {count === 0 ? (
-          
-          null
-        ) : (
-          <Link 
-          to="/results" 
-          
-          className="axil-btn btn-fill-white btn-large bannerBtn"
-          
-          >
-            Analyse
-          </Link>
-        )}
+                  {count === 0 ? null : (
+                    <Link
+                      to="/results"
+                      className="axil-btn btn-fill-white btn-large bannerBtn"
+                    >
+                      Analyse
+                    </Link>
+                  )}
 
-{/* <button onClick={() => setCount(count + 1)}>Increment</button> */}
+                  {/* <button onClick={() => setCount(count + 1)}>Increment</button> */}
                 </li>
-
               </ul>
 
               {/* <UploadImages /> */}
@@ -272,8 +251,6 @@ const BannerTwo = () => {
         </li>
       </ul>
     </div>
-
-    
   );
 };
 
