@@ -225,7 +225,7 @@ def get_emails():
     return emails
 
 
-@app.route('/')
+@app.route('/a')
 @cross_origin()
 def serve():
     return send_from_directory(app.static_folder, 'index.html')
