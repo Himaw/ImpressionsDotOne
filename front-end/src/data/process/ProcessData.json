@@ -1,0 +1,17 @@
+[
+
+    {
+        "id": 1,
+        "thumb": "/images/banner/ytl8new.png",
+        "subtitle": "Something that you should know...",
+        "title": "How do we rate the thumbnails?",
+        "paragraph": "We run the thumnails through various AI models to analyse them and ensure the thumbnails are more likely to please the youtube algorithm and thus have a greater chance of having a higher CTR. We also check if the thumbnails are safe to search and if they might get restricted by Google."
+    },
+    {
+        "id": 2,
+        "thumb": "/images/others/demonitizedNew3.png",
+        "subtitle": "Safe Search...",
+        "title": "How does it effect me?",
+        "paragraph": "Google SafeSearch is a feature that filters out explicit or inappropriate content from Google's search results. This includes filtering out content that contains nudity, graphic violence, and other adult themes.   For YouTube, it's also important because if your video thumbnail is not appropriate (violates their guideline) it will be age restricted, which will limit the audience that can see the video, and can also lead to demonetization."
+    }
+]

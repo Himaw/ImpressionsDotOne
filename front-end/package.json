@@ -1,0 +1,66 @@
+{
+  "name": "react-app",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "https://new.axilthemes.com/",
+  "dependencies": {
+    "@emailjs/browser": "^3.4.0",
+    "@material-ui/core": "^4.12.4",
+    "@material-ui/icons": "^4.11.3",
+    "@mui/material": "^5.11.7",
+    "@mui/styled-engine-sc": "^5.11.0",
+    "@testing-library/jest-dom": "^5.16.1",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/user-event": "^13.5.0",
+    "antd": "^5.1.6",
+    "aos": "^2.3.4",
+    "axios": "^0.27.2",
+    "bootstrap": "^5.1.3",
+    "bower": "^1.8.14",
+    "fslightbox-react": "^1.6.2-2",
+    "mui": "^0.0.1",
+    "node-sass": "npm:sass@^1.49.9",
+    "particles.js": "^2.0.0",
+    "react": "^17.0.2",
+    "react-animation-on-scroll": "^5.1.0",
+    "react-back-to-top-button": "^0.0.14",
+    "react-bootstrap": "^2.2.3",
+    "react-countdown": "^2.3.2",
+    "react-countup": "^6.1.1",
+    "react-dom": "^17.0.2",
+    "react-icons": "^4.7.1",
+    "react-on-screen": "^2.1.1",
+    "react-paginate": "^8.1.3",
+    "react-router-dom": "^6.2.1",
+    "react-scripts": "^5.0.1",
+    "react-slick": "^0.29.0",
+    "react-tilty": "^2.0.3",
+    "styled-components": "^5.3.6",
+    "web-vitals": "^2.1.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "proxy": "http://127.0.0.1:5000/"
+}
