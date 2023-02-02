@@ -8,7 +8,7 @@ import requests
 from flask import Flask, request, jsonify, redirect, url_for
 from flask_cors import CORS, cross_origin
 from flask import send_from_directory
-app = Flask(__name__, static_folder='font-end/build', static_url_path='')
+app = Flask(__name__, static_folder='front-end/build', static_url_path='')
 
 CORS(app, support_credentials=True)
 
