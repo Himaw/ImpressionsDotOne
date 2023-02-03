@@ -225,10 +225,14 @@ def get_emails():
     return emails
 
 
-@app.route('/a')
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
 @cross_origin()
-def serve():
-    return send_from_directory(app.static_folder, 'index.html')
+def serve(path):
+    if path != "" and os.path.exists(app.static_folder + '/' + path):
+        return send_from_directory(app.static_folder, path)
+    else:
+        return send_from_directory(app.static_folder, 'index.html')
 
 
 if __name__ == "__main__":

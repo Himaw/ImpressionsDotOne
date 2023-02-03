@@ -58,6 +58,7 @@ const FooterOne = ({ parentClass }) => {
                   <form
                     method="post"
                     action="https://impressionsone.herokuapp.com/emails"
+                    // action="http://127.0.0.1:5000/email"
                     onSubmit={handleSubmit}
                     target="hiddenFrame"
                   >
