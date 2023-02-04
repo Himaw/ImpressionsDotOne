@@ -30,19 +30,19 @@ const CountData = [
   },
 ];
 
-const CaseStudyProp = () => {
+const CaseStudyProp = ({ prop }) => {
   const CaseLeftThumb = ({ data }) => {
-    const [analysisData, setAnalysisData] = useState({});
-    // const [bestFace, setBestFace] = useState(2);
-    useEffect(() => {
-      fetch("/analyse")
-        .then((res) => res.json())
-        .then((data) => {
-          setAnalysisData({
-            faces: data.faces,
-          });
-        });
-    }, []);
+    // const [analysisData, setAnalysisData] = useState({});
+    // // const [bestFace, setBestFace] = useState(2);
+    // useEffect(() => {
+    //   fetch("/analyse")
+    //     .then((res) => res.json())
+    //     .then((data) => {
+    //       setAnalysisData({
+    //         faces: data.faces,
+    //       });
+    //     });
+    // }, []);
     return (
       <>
         <div className="col-lg-6">
@@ -76,7 +76,7 @@ const CaseStudyProp = () => {
                       <span className="number count">
                         {isVisible ? (
                           <CountUp
-                            end={(analysisData.faces[1] / 30) * 100}
+                            end={(prop.faces[1] / 30) * 100}
                             duration={1}
                           />
                         ) : null}
@@ -95,10 +95,7 @@ const CaseStudyProp = () => {
                       <span className="number count">
                         {isVisible ? (
                           //find the highest surprised score
-                          <CountUp
-                            end={analysisData.faces.length - 3}
-                            duration={1}
-                          />
+                          <CountUp end={prop.faces.length - 3} duration={1} />
                         ) : null}
                       </span>
                     )}
@@ -111,45 +108,44 @@ const CaseStudyProp = () => {
         </div>
         {/* {analysisData.faces.length > 2 ? ( */}
         <div className="row justify-content-center ">
-        <div className="col-xl-5 col-lg-6  section splash-main-banner faces-val-score">
-          <div className="container">
-            <div className="row justify-content-center">
-              <div className="col-lg-10">
-                <div className="banner-content">
-                  <div className="site-element-count">
-                    {CountData.map((data) => (
-                      <div className="count-box" key={data.id}>
-                        <span className="count-title">{data.title}</span>
+          <div className="col-xl-5 col-lg-6  section splash-main-banner faces-val-score">
+            <div className="container">
+              <div className="row justify-content-center">
+                <div className="col-lg-10">
+                  <div className="banner-content">
+                    <div className="site-element-count">
+                      {CountData.map((data) => (
+                        <div className="count-box" key={data.id}>
+                          <span className="count-title">{data.title}</span>
 
-                        <div className="count-number h2">
-                          <TrackVisibility once>
-                            {({ isVisible }) => (
-                              <span className="number count">
-                                {isVisible ? (
-                                  analysisData.faces.length > 3 ? (
-                                    <CountUp
-                                      end={
-                                        analysisData.faces[
-                                          analysisData.faces[2]
-                                        ][data.id] * 20
-                                      }
-                                      duration={1}
-                                    />
-                                  ) : null
-                                ) : null}
-                              </span>
-                            )}
-                          </TrackVisibility>
-                          <span className="symbol">%</span>
+                          <div className="count-number h2">
+                            <TrackVisibility once>
+                              {({ isVisible }) => (
+                                <span className="number count">
+                                  {isVisible ? (
+                                    prop.faces.length > 3 ? (
+                                      <CountUp
+                                        end={
+                                          prop.faces[prop.faces[2]][data.id] *
+                                          20
+                                        }
+                                        duration={1}
+                                      />
+                                    ) : null
+                                  ) : null}
+                                </span>
+                              )}
+                            </TrackVisibility>
+                            <span className="symbol">%</span>
+                          </div>
                         </div>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
         </div>
         {/* ) : null} */}
       </>
@@ -157,16 +153,16 @@ const CaseStudyProp = () => {
   };
 
   const CaseRightThumb = ({ data }) => {
-    const [analysisData, setAnalysisData] = useState({});
-    useEffect(() => {
-      fetch("/analyse")
-        .then((res) => res.json())
-        .then((data) => {
-          setAnalysisData({
-            landmark: data.landmark,
-          });
-        });
-    }, []);
+    // const [analysisData, setAnalysisData] = useState({});
+    // useEffect(() => {
+    //   fetch("/analyse")
+    //     .then((res) => res.json())
+    //     .then((data) => {
+    //       setAnalysisData({
+    //         landmark: data.landmark,
+    //       });
+    //     });
+    // }, []);
     return (
       <>
         <div className="col-lg-6 offset-xl-1 order-lg-2">
@@ -201,9 +197,7 @@ const CaseStudyProp = () => {
                       <span className="number count">
                         {isVisible ? (
                           <CountUp
-                            end={Math.ceil(
-                              (analysisData.landmark.length - 2) / 2
-                            )}
+                            end={Math.ceil((prop.landmark.length - 2) / 2)}
                             duration={1}
                           />
                         ) : null}
@@ -221,16 +215,16 @@ const CaseStudyProp = () => {
   };
 
   const CaseCelebLogos = ({ data }) => {
-    const [analysisData, setAnalysisData] = useState({});
-    useEffect(() => {
-      fetch("/analyse")
-        .then((res) => res.json())
-        .then((data) => {
-          setAnalysisData({
-            logos: data.logos,
-          });
-        });
-    }, []);
+    // const [analysisData, setAnalysisData] = useState({});
+    // useEffect(() => {
+    //   fetch("/analyse")
+    //     .then((res) => res.json())
+    //     .then((data) => {
+    //       setAnalysisData({
+    //         logos: data.logos,
+    //       });
+    //     });
+    // }, []);
     return (
       <>
         <div className="col-lg-6">
@@ -264,10 +258,7 @@ const CaseStudyProp = () => {
                     {({ isVisible }) => (
                       <span className="number count">
                         {isVisible ? (
-                          <CountUp
-                            end={analysisData.logos.length - 2}
-                            duration={1}
-                          />
+                          <CountUp end={prop.logos.length - 2} duration={1} />
                         ) : null}
                       </span>
                     )}

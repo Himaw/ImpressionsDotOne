@@ -15,23 +15,25 @@ import { AnimationOnScroll } from "react-animation-on-scroll";
 import axios from "axios";
 
 const Results = () => {
-  // const [analysisData, setAnalysisData] = useState({});
+  const [analysisData, setAnalysisData] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     // fetch("/analyse")
     axios
-      .get("/analyse")
-      .then((res) => res.json())
-      .then((data) => {
-        // setAnalysisData({
-        //   safeSearch: data.safeSearch,
-        //   faces: data.faces,
-        //   landmark: data.landmark,
-        //   logos: data.logos,
-        // });
-        // console.log(analysisData);
-        console.log(data);
+      .get("https://impressionsone.herokuapp.com/analyse")
+      .then((response) => {
+        console.log("SUCCESS", response);
+        setAnalysisData(response.data);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
       });
   }, []);
+  console.log(analysisData.finalScore);
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
   return (
     <>
       <SEO title="Results" />
@@ -39,14 +41,14 @@ const Results = () => {
       <main className="main-wrapper ">
         <HeaderTwo />
 
-        <CounterUpTwo />
+        <CounterUpTwo prop={analysisData} />
 
         <AnimationOnScroll
           animateIn="slideInRight"
           duration={1}
           animateOnce={true}
         >
-          <CounterUpOne />
+          <CounterUpOne prop={analysisData} />
         </AnimationOnScroll>
         <AnimationOnScroll
           animateIn="slideInLeft"
@@ -55,7 +57,7 @@ const Results = () => {
         >
           <div className="pt--250 pt_lg--200 pt_md--100 pt_sm--80 case-study-page-area ">
             <div className="container ">
-              <CaseStudyProp />
+              <CaseStudyProp prop={analysisData} />
             </div>
           </div>
         </AnimationOnScroll>

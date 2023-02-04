@@ -33,17 +33,17 @@ const Data = [
   },
 ];
 
-const CounterUpSafeSearch = ({ colSize, layoutStyle, evenTopMargin }) => {
-  const [analysisData, setAnalysisData] = useState({});
-  useEffect(() => {
-    fetch("/analyse")
-      .then((res) => res.json())
-      .then((data) => {
-        setAnalysisData({
-          safeSearch: data.safeSearch,
-        });
-      });
-  }, []);
+const CounterUpSafeSearch = ({ colSize, layoutStyle, evenTopMargin, prop }) => {
+  // const [analysisData, setAnalysisData] = useState({});
+  // useEffect(() => {
+  //   fetch("/analyse")
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setAnalysisData({
+  //         safeSearch: data.safeSearch,
+  //       });
+  //     });
+  // }, []);
   return (
     <>
       {Data.map((data) => (
@@ -80,25 +80,13 @@ const CounterUpSafeSearch = ({ colSize, layoutStyle, evenTopMargin }) => {
                   <span className="number count">
                     {isVisible ? (
                       data.id == 1 ? (
-                        <CountUp
-                          end={analysisData.safeSearch[5] * 20}
-                          duration={1}
-                        />
+                        <CountUp end={prop.safeSearch[5] * 20} duration={1} />
                       ) : data.id == 2 ? (
-                        <CountUp
-                          end={analysisData.safeSearch[3] * 20}
-                          duration={1}
-                        />
+                        <CountUp end={prop.safeSearch[3] * 20} duration={1} />
                       ) : data.id == 3 ? (
-                        <CountUp
-                          end={analysisData.safeSearch[4] * 20}
-                          duration={1}
-                        />
+                        <CountUp end={prop.safeSearch[4] * 20} duration={1} />
                       ) : (
-                        <CountUp
-                          end={analysisData.safeSearch[2] * 20}
-                          duration={1}
-                        />
+                        <CountUp end={prop.safeSearch[2] * 20} duration={1} />
                       )
                     ) : null}
                   </span>

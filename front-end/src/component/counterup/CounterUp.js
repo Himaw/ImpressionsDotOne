@@ -33,20 +33,26 @@ const Data = [
   },
 ];
 
-const CounterUp = ({ colSize, layoutStyle, evenTopMargin }) => {
-  const [analysisData, setAnalysisData] = useState({});
-  useEffect(() => {
-    fetch("/analyse")
-      .then((res) => res.json())
-      .then((data) => {
-        setAnalysisData({
-          safeSearch: data.safeSearch[1],
-          faces: data.faces[1],
-          landmark: data.landmark[1],
-          logos: data.logos[1],
-        });
-      });
-  }, []);
+const CounterUp = ({ colSize, layoutStyle, evenTopMargin, prop }) => {
+  // const [analysisData, setAnalysisData] = useState({});
+  // useEffect(() => {
+  //   fetch("/analyse")
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setAnalysisData({
+  //         safeSearch: data.safeSearch[1],
+  //         faces: data.faces[1],
+  //         landmark: data.landmark[1],
+  //         logos: data.logos[1],
+  //       });
+  //     });
+  // }, []);
+  // let safeSearch = prop.safeSearch;
+  // console.log(safeSearch[1]);
+  // const { faces, finalScore, image, landmark, logos, safeSearch } = prop;
+  // console.log(prop);
+  // const faces = prop.faces;
+  // console.log(faces[1]);
   return (
     <>
       {Data.map((data) => (
@@ -83,19 +89,19 @@ const CounterUp = ({ colSize, layoutStyle, evenTopMargin }) => {
                   <span className="number count">
                     {isVisible ? (
                       data.id == 1 ? (
-                        <CountUp end={analysisData.safeSearch} duration={1} />
+                        <CountUp end={prop.safeSearch[1]} duration={1} />
                       ) : data.id == 2 ? (
                         <CountUp
-                          end={(analysisData.faces / 30) * 100}
+                          end={(prop.faces[1] / 30) * 100}
                           duration={1}
                         />
                       ) : data.id == 3 ? (
-                        analysisData.landmark === 0 ? (
+                        prop.landmark[1] === 0 ? (
                           <CountUp end={100} duration={1} />
                         ) : (
                           <CountUp end={0} duration={1} />
                         )
-                      ) : analysisData.logos === 0 ? (
+                      ) : prop.logos[1] === 0 ? (
                         <CountUp end={100} duration={1} />
                       ) : (
                         <CountUp end={0} duration={1} />

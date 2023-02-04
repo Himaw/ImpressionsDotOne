@@ -4,19 +4,19 @@ import CounterUp from "./CounterUp";
 import Tilty from "react-tilty";
 // import analysisImage from "../../../flask-server/images/analysisImage.png";
 
-const CounterUpTwo = () => {
-  const [analysisData, setAnalysisData] = useState({});
-  useEffect(() => {
-    fetch("/analyse")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data.image);
-        setAnalysisData({
-          finalScore: data.finalScore,
-          image: data.image,
-        });
-      });
-  }, []);
+const CounterUpTwo = ({ prop }) => {
+  // const [analysisData, setAnalysisData] = useState({});
+  // useEffect(() => {
+  //   fetch("/analyse")
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       console.log(data.image);
+  //       setAnalysisData({
+  //         finalScore: data.finalScore,
+  //         image: data.image,
+  //       });
+  //     });
+  // }, []);
   return (
     <div className="section section-padding expert-counterup-area">
       <div className="container">
@@ -30,7 +30,7 @@ const CounterUpTwo = () => {
                     // src={require("./analysisImage.png")}
                     src={
                       "https://storage.googleapis.com/analysisimagebucket/" +
-                      analysisData.image
+                      prop.image
                     }
                     // src="https://storage.googleapis.com/analysisimagebucket/image1.png"
                     alt="Input Thumbnail"
@@ -38,7 +38,7 @@ const CounterUpTwo = () => {
                 </Tilty>
               </div>
               <span className="subtitle">Final Score...</span>
-              <h2>{analysisData.finalScore}%</h2>
+              <h2>{prop.finalScore}%</h2>
               <p className="mb--50">
                 The thumbnail is in the top 2 percentile of all thumbnails on
                 youtube, it is more likely to get the video more views and
@@ -52,6 +52,7 @@ const CounterUpTwo = () => {
                 colSize="col-sm-6"
                 layoutStyle="counterup-style-2"
                 evenTopMargin=""
+                prop={prop}
               />
             </div>
           </div>

@@ -2,7 +2,7 @@ import React from "react";
 import SectionTitle from "../../elements/section-title/SectionTitle";
 import CounterUpSafeSearch from "../../component/counterup/CounterUpSafeSearch";
 
-const CounterUpOne = () => {
+const CounterUpOne = ({ prop }) => {
   return (
     <div className="section section-padding bg-color-dark">
       <div className="container">
@@ -18,6 +18,7 @@ const CounterUpOne = () => {
             colSize="col-lg-3 col-6"
             layoutStyle=""
             evenTopMargin=""
+            prop={prop}
           />
         </div>
       </div>
