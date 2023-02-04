@@ -203,6 +203,7 @@ def upload():
     # user provides url in query string
 
     global results
+    results = []
     results = (detect_safe_search("analysisImage.png"))
     print(results)
     return "done"
