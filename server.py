@@ -17,9 +17,9 @@ client = vision.ImageAnnotatorClient()
 ###################
 # Imports the Google Cloud client library
 # Instantiates a client
-# storage_client = storage.Client()
+storage_client = storage.Client()
 # # The name for the new bucket
-# bucket_name = "analysisimagebucket"
+bucket_name = "analysisimagebucket"
 # Creates the new bucket
 # bucket = storage_client.create_bucket(bucket_name)
 #####################
@@ -184,21 +184,26 @@ def members():
 def upload():
     file = request.files['file']
 
-    # storage_client = storage.Client()
-    # bucket = storage_client.get_bucket(bucket_name)
-    # blob = bucket.blob("image1.png")
-    # blob.upload_from_string(file.read(), content_type=file.content_type)
-
+    storage_client = storage.Client()
+    bucket = storage_client.get_bucket(bucket_name)
+    blob = bucket.blob("image1.png")
+    blob.upload_from_string(file.read(), content_type=file.content_type)
+    blob.download_to_filename("analysisImage.png")
     # filename = 'uploadedFiles/'+str(uuid.uuid4())+'.png'
     # filename = 'flask-server/images/analysisImage.png'
-    filename2 = 'front-end/src/component/counterup/analysisImage.png'
-    file.save(filename2)
-    print(file)
+    # filename2 = 'front-end/src/component/counterup/analysisImage.png'
+    # file.save(filename2)
+    # print(file)
 
     # for image in (os.listdir(str(os.getcwd())+"/flask-server/images")):
+    # r = requests.get(
+    #     'https://storage.cloud.google.com/analysisimagebucket/image1.png')
+    # with open('analysisImage.png', 'wb') as f:
+    #     f.write(r.content)
+    # user provides url in query string
+
     global results
-    results = (detect_safe_search(
-        "front-end/src/component/counterup/analysisImage.png"))
+    results = (detect_safe_search("analysisImage.png"))
     print(results)
     return "done"
     # return redirect(url_for('analysis'))
@@ -215,7 +220,7 @@ def analysis():
     #     results = (detect_safe_search(str(os.getcwd()) +
     #                "/flask-server/images/" + image))
     #     print(results)
-    return {"safeSearch": results[0], "faces": results[1], "landmark": results[2], "logos": results[3], "finalScore": results[4]}
+    return {"safeSearch": results[0], "faces": results[1], "landmark": results[2], "logos": results[3], "finalScore": results[4], "image": "./analysisImage.png"}
 
 # if __name__ == "__main__":
 #     app.run(debug=True)

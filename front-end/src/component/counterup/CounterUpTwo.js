@@ -12,6 +12,7 @@ const CounterUpTwo = () => {
       .then((data) => {
         setAnalysisData({
           finalScore: data.finalScore,
+          // image: data.image,
         });
       });
   }, []);
@@ -26,7 +27,8 @@ const CounterUpTwo = () => {
                   <img
                     className="thumbnail-preview"
                     // src={require("./analysisImage.png")}
-                    src="https://newsely.com/wp-content/uploads/2020/09/D31.png"
+                    // src={require(analysisData.image)}
+                    src="https://storage.cloud.google.com/analysisimagebucket/image1.png"
                     alt="Input Thumbnail"
                   />
                 </Tilty>
