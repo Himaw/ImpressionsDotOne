@@ -28,7 +28,7 @@ const CounterUpTwo = () => {
                     className="thumbnail-preview"
                     // src={require("./analysisImage.png")}
                     // src={require(analysisData.image)}
-                    src="https://storage.cloud.google.com/analysisimagebucket/image1.png"
+                    src="https://storage.googleapis.com/analysisimagebucket/image1.png"
                     alt="Input Thumbnail"
                   />
                 </Tilty>
