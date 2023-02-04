@@ -27,7 +27,7 @@ const CounterUpTwo = () => {
                   <img
                     className="thumbnail-preview"
                     // src={require("./analysisImage.png")}
-                    src={analysisData.image}
+                    src={"https://storage.googleapis.com/analysisimagebucket/"+analysisData.image}
                     // src="https://storage.googleapis.com/analysisimagebucket/image1.png"
                     alt="Input Thumbnail"
                   />
