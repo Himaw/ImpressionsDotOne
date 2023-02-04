@@ -204,7 +204,7 @@ def upload():
     # user provides url in query string
 
     global results
-    # results = []
+    results = []
     results = (detect_safe_search(filename))
     results.append(filename)
     print(results)
