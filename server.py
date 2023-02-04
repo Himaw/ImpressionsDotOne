@@ -1,3 +1,4 @@
+from google.cloud import storage
 from google.cloud import vision
 import os
 import io
@@ -10,15 +11,26 @@ from flask_cors import CORS, cross_origin
 from flask import send_from_directory
 app = Flask(__name__, static_folder='front-end/build', static_url_path='')
 
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'yttnanlaysis-4919c47df72c.json'
+client = vision.ImageAnnotatorClient()
+# client = vision.ImageAnnotatorClient()
+###################
+# Imports the Google Cloud client library
+# Instantiates a client
+# storage_client = storage.Client()
+# # The name for the new bucket
+# bucket_name = "analysisimagebucket"
+# Creates the new bucket
+# bucket = storage_client.create_bucket(bucket_name)
+#####################
+
+
 CORS(app, support_credentials=True)
 
 emails = []
 
 # os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = str(
 #     os.getcwd())+'/flask-server/yttnanlaysis-4919c47df72c.json'
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'yttnanlaysis-4919c47df72c.json'
-client = vision.ImageAnnotatorClient()
-client = vision.ImageAnnotatorClient()
 
 
 def detect_faces(path):
@@ -171,6 +183,11 @@ def members():
 @cross_origin()
 def upload():
     file = request.files['file']
+
+    # storage_client = storage.Client()
+    # bucket = storage_client.get_bucket(bucket_name)
+    # blob = bucket.blob("image1.png")
+    # blob.upload_from_string(file.read(), content_type=file.content_type)
 
     # filename = 'uploadedFiles/'+str(uuid.uuid4())+'.png'
     # filename = 'flask-server/images/analysisImage.png'
