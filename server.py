@@ -183,13 +183,14 @@ def members():
 @cross_origin()
 def upload():
     file = request.files['file']
+    filename = str(uuid.uuid4())+'.png'
 
     storage_client = storage.Client()
     bucket = storage_client.get_bucket(bucket_name)
-    blob = bucket.blob("image3.png")
+    blob = bucket.blob(filename)
     blob.upload_from_string(file.read(), content_type=file.content_type)
-    blob.download_to_filename("analysisImage.png")
-    # filename = 'uploadedFiles/'+str(uuid.uuid4())+'.png'
+    blob.download_to_filename(filename)
+    
     # filename = 'flask-server/images/analysisImage.png'
     # filename2 = 'front-end/src/component/counterup/analysisImage.png'
     # file.save(filename2)
@@ -204,7 +205,8 @@ def upload():
 
     global results
     # results = []
-    results = (detect_safe_search("analysisImage.png"))
+    results = (detect_safe_search(filename))
+    results.append(filename)
     print(results)
     return "done"
     # return redirect(url_for('analysis'))
@@ -221,7 +223,7 @@ def analysis():
     #     results = (detect_safe_search(str(os.getcwd()) +
     #                "/flask-server/images/" + image))
     #     print(results)
-    return {"safeSearch": results[0], "faces": results[1], "landmark": results[2], "logos": results[3], "finalScore": results[4], "image": "./analysisImage.png"}
+    return {"safeSearch": results[0], "faces": results[1], "landmark": results[2], "logos": results[3], "finalScore": results[4], "image": results[5]}
 
 # if __name__ == "__main__":
 #     app.run(debug=True)

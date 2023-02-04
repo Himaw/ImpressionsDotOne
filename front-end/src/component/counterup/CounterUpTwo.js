@@ -12,7 +12,7 @@ const CounterUpTwo = () => {
       .then((data) => {
         setAnalysisData({
           finalScore: data.finalScore,
-          // image: data.image,
+          image: data.image,
         });
       });
   }, []);
@@ -27,8 +27,8 @@ const CounterUpTwo = () => {
                   <img
                     className="thumbnail-preview"
                     // src={require("./analysisImage.png")}
-                    // src={require(analysisData.image)}
-                    src="https://storage.googleapis.com/analysisimagebucket/image1.png"
+                    src={analysisData.image}
+                    // src="https://storage.googleapis.com/analysisimagebucket/image1.png"
                     alt="Input Thumbnail"
                   />
                 </Tilty>
