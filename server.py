@@ -186,7 +186,7 @@ def upload():
 
     storage_client = storage.Client()
     bucket = storage_client.get_bucket(bucket_name)
-    blob = bucket.blob("image1.png")
+    blob = bucket.blob("image3.png")
     blob.upload_from_string(file.read(), content_type=file.content_type)
     blob.download_to_filename("analysisImage.png")
     # filename = 'uploadedFiles/'+str(uuid.uuid4())+'.png'
