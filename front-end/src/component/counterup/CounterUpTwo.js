@@ -10,6 +10,7 @@ const CounterUpTwo = () => {
     fetch("/analyse")
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         setAnalysisData({
           finalScore: data.finalScore,
           image: data.image,
@@ -27,7 +28,10 @@ const CounterUpTwo = () => {
                   <img
                     className="thumbnail-preview"
                     // src={require("./analysisImage.png")}
-                    src={"https://storage.googleapis.com/analysisimagebucket/"+analysisData.image}
+                    src={
+                      "https://storage.googleapis.com/analysisimagebucket/" +
+                      analysisData.image
+                    }
                     // src="https://storage.googleapis.com/analysisimagebucket/image1.png"
                     alt="Input Thumbnail"
                   />
