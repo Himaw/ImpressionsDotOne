@@ -20,7 +20,7 @@ const Results = () => {
   useEffect(() => {
     // fetch("/analyse")
     axios
-      .get("https://impressionsone.herokuapp.com/analyse")
+      .get("http://www.impressions.one/analyse")
       .then((response) => {
         console.log("SUCCESS", response);
         setAnalysisData(response.data);
