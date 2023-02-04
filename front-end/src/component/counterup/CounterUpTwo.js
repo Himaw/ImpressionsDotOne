@@ -10,7 +10,7 @@ const CounterUpTwo = () => {
     fetch("/analyse")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        console.log(data.image);
         setAnalysisData({
           finalScore: data.finalScore,
           image: data.image,
