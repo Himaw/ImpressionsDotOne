@@ -189,7 +189,7 @@ def upload():
     bucket = storage_client.get_bucket(bucket_name)
     blob = bucket.blob(filename)
     blob.upload_from_string(file.read(), content_type=file.content_type)
-    # blob.download_to_filename(filename)
+    blob.download_to_filename(filename)
 
     # filename = 'flask-server/images/analysisImage.png'
     # filename2 = 'front-end/src/component/counterup/analysisImage.png'
