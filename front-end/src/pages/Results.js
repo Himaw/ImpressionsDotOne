@@ -17,34 +17,34 @@ import axios from "axios";
 const Results = () => {
   const [analysisData, setAnalysisData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  // useEffect(() => {
-  //   // fetch("/analyse")
-  //   axios
-  //     .get("http://www.impressions.one/analyse")
-  //     .then((response) => {
-  //       console.log("SUCCESS", response);
-  //       setAnalysisData(response.data);
-  //       setIsLoading(false);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // }, []);
   useEffect(() => {
-    fetch("/analyse")
-      .then((res) => res.json())
-      .then((data) => {
-        setAnalysisData(data);
-        // setAnalysisData({
-        //   safeSearch: data.safeSearch,
-        //   faces: data.faces,
-        //   landmark: data.landmark,
-        //   logos: data.logos,
-        // });
-        // console.log(analysisData);
-        // console.log(data);
+    axios
+      .get("https://impressionsone.herokuapp.com/analyse")
+      .then((response) => {
+        console.log("SUCCESS", response);
+        setAnalysisData(response.data);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.log("Hima");
+        console.log(error);
       });
   }, []);
+  // useEffect(() => {
+  //   fetch("/analyse")
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setAnalysisData(data);
+  //       // setAnalysisData({
+  //       //   safeSearch: data.safeSearch,
+  //       //   faces: data.faces,
+  //       //   landmark: data.landmark,
+  //       //   logos: data.logos,
+  //       // });
+  //       // console.log(analysisData);
+  //       // console.log(data);
+  //     });
+  // }, []);
   console.log(analysisData.finalScore);
   if (isLoading) {
     return <div>Loading...</div>;
