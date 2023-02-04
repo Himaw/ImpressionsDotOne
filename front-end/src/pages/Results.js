@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import FooterOne from "../common/footer/FooterOne";
-import { BackTop } from 'antd';
+import { BackTop } from "antd";
 import HeaderTwo from "../common/header/HeaderTwo";
 import SEO from "../common/SEO";
 import BcrumbBannerOne from "../elements/breadcrumb/BcrumbBannerOne";
@@ -12,11 +12,14 @@ import VideoTwo from "../component/video/VideoTwo";
 import CaseStudyProp from "../component/casestudy/CaseStudyProp";
 import CounterUpOne from "../component/counterup/CounterUpOne";
 import { AnimationOnScroll } from "react-animation-on-scroll";
+import axios from "axios";
 
 const Results = () => {
   // const [analysisData, setAnalysisData] = useState({});
   useEffect(() => {
-    fetch("/analyse")
+    // fetch("/analyse")
+    axios
+      .get("/analyse")
       .then((res) => res.json())
       .then((data) => {
         // setAnalysisData({
@@ -50,7 +53,6 @@ const Results = () => {
           duration={1}
           animateOnce={true}
         >
-          
           <div className="pt--250 pt_lg--200 pt_md--100 pt_sm--80 case-study-page-area ">
             <div className="container ">
               <CaseStudyProp />

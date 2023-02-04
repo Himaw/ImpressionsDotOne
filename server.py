@@ -190,7 +190,7 @@ def upload():
     blob = bucket.blob(filename)
     blob.upload_from_string(file.read(), content_type=file.content_type)
     blob.download_to_filename(filename)
-    
+
     # filename = 'flask-server/images/analysisImage.png'
     # filename2 = 'front-end/src/component/counterup/analysisImage.png'
     # file.save(filename2)
@@ -261,4 +261,7 @@ def serve(path):
 
 
 if __name__ == "__main__":
+    os.chdir("./front-end")
+    os.system("npm run build")
+    os.chdir("../")
     app.run(debug=True)
