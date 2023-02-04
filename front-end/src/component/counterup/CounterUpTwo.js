@@ -18,7 +18,6 @@ const CounterUpTwo = () => {
   return (
     <div className="section section-padding expert-counterup-area">
       <div className="container">
-        
         <div className="row align-items-center">
           <div className="col-lg-5">
             <div className="section-heading heading-left">
@@ -26,7 +25,8 @@ const CounterUpTwo = () => {
                 <Tilty perspective={2000} reset={true}>
                   <img
                     className="thumbnail-preview"
-                    src={require("./analysisImage.png")}
+                    // src={require("./analysisImage.png")}
+                    src="https://newsely.com/wp-content/uploads/2020/09/D31.png"
                     alt="Input Thumbnail"
                   />
                 </Tilty>
