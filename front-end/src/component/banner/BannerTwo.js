@@ -20,8 +20,8 @@ const BannerTwo = () => {
     method: "POST",
     crossOrigin: "anonymous",
     multiple: false,
-    // action: "https://impressionsone.herokuapp.com/uploads",
-    action: "http://127.0.0.1:5000/uploads",
+    action: "https://impressionsone.herokuapp.com/uploads",
+    // action: "http://127.0.0.1:5000/uploads",
     onChange(info) {
       const { status } = info.file;
       setCount(0);
