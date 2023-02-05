@@ -209,6 +209,8 @@ def upload():
     results.append(filename)
     print(results)
     os.remove(filename)
+    while results.len == 0:
+        pass
     return "done"
     # return redirect(url_for('analysis'))
 
@@ -216,7 +218,7 @@ def upload():
 @app.route("/analyse")
 @cross_origin()
 def analysis():
-    return jsonify(safeSearch=results)
+    return jsonify(dataAn=results)
 
 # if __name__ == "__main__":
 #     app.run(debug=True)

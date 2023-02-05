@@ -35,7 +35,7 @@ const Results = () => {
     await fetch("/analyse")
       .then((res) => res.json())
       .then((data) => {
-        setAnalysisData(data);
+        setAnalysisData(data.dataAn);
         setIsLoading(false);
         // console.log()
       })
