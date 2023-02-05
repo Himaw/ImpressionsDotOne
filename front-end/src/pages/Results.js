@@ -51,7 +51,7 @@ const Results = () => {
   if (isLoading) {
     return (
       <main className="main-wrapper ">
-        <Space direction="vertical" style={{ width: "100%" }}>
+        <Space direction="vertical" style={{ width: "100%"}}>
           <Space>
             <Spin tip="Loading" size="large">
               <div className="content" />
@@ -65,7 +65,7 @@ const Results = () => {
     <>
       <SEO title="Results" />
       <ColorSwitcher />
-      <main className="main-wrapper ">
+      <main className="mouseposition-extension-element-full-container">
         <HeaderTwo />
 
         <CounterUpTwo prop={analysisData} />
