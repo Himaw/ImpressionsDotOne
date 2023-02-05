@@ -56,14 +56,16 @@ const Results = () => {
       <main className="main-wrapper ">
         
           
-            <Spin tip="Loading" size="large"/>
-              
+            <Spin tip="Loading" size="large">
+              <div className="content" />
+            </Spin>
           
         
       </main>
       </>
     );
   }
+  else{
   return (
     <>
       <SEO title="Results" />
@@ -96,6 +98,7 @@ const Results = () => {
       </main>
     </>
   );
+  }
 };
 
 export default Results;
