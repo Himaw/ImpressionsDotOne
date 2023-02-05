@@ -30,7 +30,7 @@ const CounterUpTwo = ({ prop }) => {
                     // src={require("./analysisImage.png")}
                     src={
                       "https://storage.googleapis.com/analysisimagebucket/" +
-                      prop.image
+                      prop[5]
                     }
                     // src="https://storage.googleapis.com/analysisimagebucket/image1.png"
                     alt="Input Thumbnail"
@@ -38,7 +38,7 @@ const CounterUpTwo = ({ prop }) => {
                 </Tilty>
               </div>
               <span className="subtitle">Final Score...</span>
-              <h2>{prop.finalScore}%</h2>
+              <h2>{prop[4]}%</h2>
               <p className="mb--50">
                 The thumbnail is in the top 2 percentile of all thumbnails on
                 youtube, it is more likely to get the video more views and

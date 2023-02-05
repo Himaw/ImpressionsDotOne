@@ -80,13 +80,13 @@ const CounterUpSafeSearch = ({ colSize, layoutStyle, evenTopMargin, prop }) => {
                   <span className="number count">
                     {isVisible ? (
                       data.id == 1 ? (
-                        <CountUp end={prop.safeSearch[5] * 20} duration={1} />
+                        <CountUp end={prop[0][5] * 20} duration={1} />
                       ) : data.id == 2 ? (
-                        <CountUp end={prop.safeSearch[3] * 20} duration={1} />
+                        <CountUp end={prop[0][3] * 20} duration={1} />
                       ) : data.id == 3 ? (
-                        <CountUp end={prop.safeSearch[4] * 20} duration={1} />
+                        <CountUp end={prop[0][4] * 20} duration={1} />
                       ) : (
-                        <CountUp end={prop.safeSearch[2] * 20} duration={1} />
+                        <CountUp end={prop[0][2] * 20} duration={1} />
                       )
                     ) : null}
                   </span>

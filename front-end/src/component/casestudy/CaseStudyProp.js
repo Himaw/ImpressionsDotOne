@@ -75,10 +75,7 @@ const CaseStudyProp = ({ prop }) => {
                     {({ isVisible }) => (
                       <span className="number count">
                         {isVisible ? (
-                          <CountUp
-                            end={(prop.faces[1] / 30) * 100}
-                            duration={1}
-                          />
+                          <CountUp end={(prop[1][1] / 30) * 100} duration={1} />
                         ) : null}
                       </span>
                     )}
@@ -95,7 +92,7 @@ const CaseStudyProp = ({ prop }) => {
                       <span className="number count">
                         {isVisible ? (
                           //find the highest surprised score
-                          <CountUp end={prop.faces.length - 3} duration={1} />
+                          <CountUp end={prop[1].length - 3} duration={1} />
                         ) : null}
                       </span>
                     )}
@@ -123,12 +120,9 @@ const CaseStudyProp = ({ prop }) => {
                               {({ isVisible }) => (
                                 <span className="number count">
                                   {isVisible ? (
-                                    prop.faces.length > 3 ? (
+                                    prop[1].length > 3 ? (
                                       <CountUp
-                                        end={
-                                          prop.faces[prop.faces[2]][data.id] *
-                                          20
-                                        }
+                                        end={prop[1][prop[1][2]][data.id] * 20}
                                         duration={1}
                                       />
                                     ) : null
@@ -197,7 +191,7 @@ const CaseStudyProp = ({ prop }) => {
                       <span className="number count">
                         {isVisible ? (
                           <CountUp
-                            end={Math.ceil((prop.landmark.length - 2) / 2)}
+                            end={Math.ceil((prop[2].length - 2) / 2)}
                             duration={1}
                           />
                         ) : null}
@@ -258,7 +252,7 @@ const CaseStudyProp = ({ prop }) => {
                     {({ isVisible }) => (
                       <span className="number count">
                         {isVisible ? (
-                          <CountUp end={prop.logos.length - 2} duration={1} />
+                          <CountUp end={prop[3].length - 2} duration={1} />
                         ) : null}
                       </span>
                     )}

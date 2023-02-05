@@ -35,6 +35,7 @@ const Results = () => {
     await fetch("/analyse")
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         setAnalysisData(data.dataAn);
         setIsLoading(false);
         // console.log()
@@ -44,7 +45,7 @@ const Results = () => {
         console.log(error);
       });
   }, []);
-  console.log(analysisData.finalScore);
+  console.log(analysisData[4]);
   if (isLoading) {
     return (
       <>

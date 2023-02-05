@@ -209,8 +209,8 @@ def upload():
     results.append(filename)
     print(results)
     os.remove(filename)
-    while results.len == 0:
-        pass
+    while len(results) == 0:
+        print(1)
     return "done"
     # return redirect(url_for('analysis'))
 

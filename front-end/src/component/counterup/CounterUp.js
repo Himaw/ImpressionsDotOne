@@ -89,19 +89,16 @@ const CounterUp = ({ colSize, layoutStyle, evenTopMargin, prop }) => {
                   <span className="number count">
                     {isVisible ? (
                       data.id == 1 ? (
-                        <CountUp end={prop.safeSearch[1]} duration={1} />
+                        <CountUp end={prop[0][1]} duration={1} />
                       ) : data.id == 2 ? (
-                        <CountUp
-                          end={(prop.faces[1] / 30) * 100}
-                          duration={1}
-                        />
+                        <CountUp end={(prop[1][1] / 30) * 100} duration={1} />
                       ) : data.id == 3 ? (
-                        prop.landmark[1] === 0 ? (
+                        prop[2][1] === 0 ? (
                           <CountUp end={100} duration={1} />
                         ) : (
                           <CountUp end={0} duration={1} />
                         )
-                      ) : prop.logos[1] === 0 ? (
+                      ) : prop[3][1] === 0 ? (
                         <CountUp end={100} duration={1} />
                       ) : (
                         <CountUp end={0} duration={1} />
