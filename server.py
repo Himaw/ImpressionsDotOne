@@ -216,15 +216,7 @@ def upload():
 @app.route("/analyse")
 @cross_origin()
 def analysis():
-    # file = request.files['file']
-    # # filename = 'uploadedFiles/'+str(uuid.uuid4())+'.png'
-    # filename = 'flask-server/images/analysisImage.png'
-    # file.save(filename)
-    # for image in (os.listdir(str(os.getcwd())+"/flask-server/images")):
-    #     results = (detect_safe_search(str(os.getcwd()) +
-    #                "/flask-server/images/" + image))
-    #     print(results)
-    return {"safeSearch": results[0], "faces": results[1], "landmark": results[2], "logos": results[3], "finalScore": results[4], "image": results[5]}
+    return jsonify(safeSearch=results[0], faces=results[1], landmark=results[2], logos=results[3], finalScore=results[4], image=results[5])
 
 # if __name__ == "__main__":
 #     app.run(debug=True)
