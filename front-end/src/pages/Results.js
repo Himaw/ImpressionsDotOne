@@ -31,76 +31,69 @@ const Results = () => {
   //       console.log(error);
   //     });
   // }, []);
-  useEffect(() => {
-    fetch("/analyse")
+  useEffect(async () => {
+    await fetch("/analyse")
       .then((res) => res.json())
       .then((data) => {
         setAnalysisData(data);
         setIsLoading(false);
-        // setAnalysisData({
-        //   safeSearch: data.safeSearch,
-        //   faces: data.faces,
-        //   landmark: data.landmark,
-        //   logos: data.logos,
-        // });
-        // console.log(analysisData);
-        // console.log(data);
+        // console.log()
+      })
+      .catch((error) => {
+        console.log("Hima");
+        console.log(error);
       });
   }, []);
   console.log(analysisData.finalScore);
   if (isLoading) {
     return (
       <>
-      <SEO title="Loading" />
-      <ColorSwitcher />
-      <main className="main-wrapper ">
-        
-      <Space direction="vertical" style={{ width: '100%' }}>
-        <Space>
-            <Spin size="large">
-              <div className="content" />
-            </Spin>
+        <SEO title="Loading" />
+        <ColorSwitcher />
+        <main className="main-wrapper ">
+          <Space direction="vertical" style={{ width: "100%" }}>
+            <Space>
+              <Spin size="large">
+                <div className="content" />
+              </Spin>
+            </Space>
           </Space>
-      </Space>
-          
-        
-      </main>
+        </main>
       </>
     );
-  }
-  else{
-  return (
-    <>
-      <SEO title="Results" />
-      <ColorSwitcher />
-      <main className="main-wrapper ">
-        <HeaderTwo />
+  } else {
+    return (
+      <>
+        <SEO title="Results" />
+        <ColorSwitcher />
+        <main className="main-wrapper ">
+          <HeaderTwo />
 
-        <CounterUpTwo prop={analysisData} />
+          <CounterUpTwo prop={analysisData} />
 
-        <AnimationOnScroll
-          animateIn="slideInRight"
-          duration={1}
-          animateOnce={true}
-        >
-          <CounterUpOne prop={analysisData} />
-        </AnimationOnScroll>
-        <AnimationOnScroll
-          animateIn="slideInLeft"
-          duration={1}
-          animateOnce={true}
-        >
-          <div className="pt--250 pt_lg--200 pt_md--100 pt_sm--80 case-study-page-area ">
-            <div className="container ">
-              <CaseStudyProp prop={analysisData} />
+          <AnimationOnScroll
+            animateIn="slideInRight"
+            duration={1}
+            animateOnce={true}
+          >
+            <CounterUpOne prop={analysisData} />
+          </AnimationOnScroll>
+          <AnimationOnScroll
+            animateIn="slideInLeft"
+            duration={1}
+            animateOnce={true}
+          >
+            <div className="pt--250 pt_lg--200 pt_md--100 pt_sm--80 case-study-page-area ">
+              <div className="container ">
+                <CaseStudyProp prop={analysisData} />
+              </div>
             </div>
-          </div>
-        </AnimationOnScroll>
+          </AnimationOnScroll>
 
-        <FooterOne parentClass="" />
-      </main>
-    </>
-  );
+          <FooterOne parentClass="" />
+        </main>
+      </>
+    );
   }
 };
 
