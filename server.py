@@ -216,7 +216,7 @@ def upload():
 @app.route("/analyse")
 @cross_origin()
 def analysis():
-    return jsonify(safeSearch=results[0], faces=results[1], landmark=results[2], logos=results[3], finalScore=results[4], image=results[5])
+    return jsonify(safeSearch=results)
 
 # if __name__ == "__main__":
 #     app.run(debug=True)
