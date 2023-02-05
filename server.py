@@ -29,6 +29,9 @@ CORS(app, support_credentials=True)
 
 emails = []
 
+
+filename = ''
+
 # os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = str(
 #     os.getcwd())+'/flask-server/yttnanlaysis-4919c47df72c.json'
 
@@ -170,7 +173,7 @@ def detect_safe_search(path):
     return (data)
 
 
-results = []
+# results = []
 
 
 @app.route("/members")
@@ -183,6 +186,7 @@ def members():
 @cross_origin()
 def upload():
     file = request.files['file']
+    global filename
     filename = str(uuid.uuid4())+'.png'
 
     storage_client = storage.Client()
@@ -203,14 +207,9 @@ def upload():
     #     f.write(r.content)
     # user provides url in query string
 
-    global results
+    # global results
     # results = []
-    results = (detect_safe_search(filename))
-    results.append(filename)
-    print(results)
-    os.remove(filename)
-    while len(results) == 0:
-        print(1)
+    
     return "done"
     # return redirect(url_for('analysis'))
 
@@ -218,8 +217,12 @@ def upload():
 @app.route("/analyse")
 @cross_origin()
 def analysis():
+    results = (detect_safe_search(filename))
+    results.append(filename)
+    print(results)
+    os.remove(filename)
     return jsonify(dataAn=results)
-
+    
 # if __name__ == "__main__":
 #     app.run(debug=True)
 
@@ -256,7 +259,7 @@ def serve(path):
 
 
 if __name__ == "__main__":
-    os.chdir("./front-end")
-    os.system("npm run build")
-    os.chdir("../")
+    # os.chdir("./front-end")
+    # os.system("npm run build")
+    # os.chdir("../")
     app.run(debug=True)
