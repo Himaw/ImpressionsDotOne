@@ -55,10 +55,13 @@ const Results = () => {
       <ColorSwitcher />
       <main className="main-wrapper ">
         
-          
+      <Space direction="vertical" style={{ width: '100%' }}>
+        <Space>
             <Spin tip="Loading" size="large">
               <div className="content" />
             </Spin>
+          </Space>
+      </Space>
           
         
       </main>
