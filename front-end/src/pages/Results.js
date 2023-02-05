@@ -50,7 +50,10 @@ const Results = () => {
   console.log(analysisData.finalScore);
   if (isLoading) {
     return (
-      <main className="mouseposition-extension-element-full-container">
+      <>
+      <SEO title="Loading" />
+      <ColorSwitcher />
+      <main className="main-wrapper ">
         <Space direction="vertical" style={{ width: "100%"}}>
           <Space>
             <Spin tip="Loading" size="large">
@@ -59,6 +62,7 @@ const Results = () => {
           </Space>
         </Space>
       </main>
+      </>
     );
   }
   return (
