@@ -50,13 +50,15 @@ const Results = () => {
   console.log(analysisData.finalScore);
   if (isLoading) {
     return (
-      <Space direction="vertical" style={{ width: "100%" }}>
-        <Space>
-          <Spin tip="Loading" size="large">
-            <div className="content" />
-          </Spin>
+      <main className="main-wrapper ">
+        <Space direction="vertical" style={{ width: "100%" }}>
+          <Space>
+            <Spin tip="Loading" size="large">
+              <div className="content" />
+            </Spin>
+          </Space>
         </Space>
-      </Space>
+      </main>
     );
   }
   return (
