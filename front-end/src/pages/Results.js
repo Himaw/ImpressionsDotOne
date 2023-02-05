@@ -12,6 +12,7 @@ import VideoTwo from "../component/video/VideoTwo";
 import CaseStudyProp from "../component/casestudy/CaseStudyProp";
 import CounterUpOne from "../component/counterup/CounterUpOne";
 import { AnimationOnScroll } from "react-animation-on-scroll";
+import { Alert, Space, Spin } from "antd";
 import axios from "axios";
 
 const Results = () => {
@@ -48,7 +49,15 @@ const Results = () => {
   }, []);
   console.log(analysisData.finalScore);
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <Space direction="vertical" style={{ width: "100%" }}>
+        <Space>
+          <Spin tip="Loading" size="large">
+            <div className="content" />
+          </Spin>
+        </Space>
+      </Space>
+    );
   }
   return (
     <>
