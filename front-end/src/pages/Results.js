@@ -56,9 +56,8 @@ const Results = () => {
       <main className="main-wrapper ">
         
           
-            <Spin tip="Loading" size="large">
-              <div className="content" />
-            </Spin>
+            <Spin tip="Loading" size="large"/>
+              
           
         
       </main>
