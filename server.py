@@ -9,6 +9,7 @@ import requests
 from flask import Flask, request, jsonify, redirect, url_for
 from flask_cors import CORS, cross_origin
 from flask import send_from_directory
+from pathlib import Path
 app = Flask(__name__, static_folder='front-end/build', static_url_path='')
 
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'yttnanlaysis-4919c47df72c.json'
@@ -28,6 +29,8 @@ bucket_name = "analysisimagebucket"
 CORS(app, support_credentials=True)
 
 emails = []
+results = []
+
 
 
 filename = ''
@@ -40,6 +43,7 @@ def detect_faces(path):
     """Detects faces in an image."""
     with io.open(path, 'rb') as image_file:
         content = image_file.read()
+    # content = file.read()
 
     image = vision.Image(content=content)
 
@@ -84,6 +88,8 @@ def detect_landmarks(path):
     with io.open(path, 'rb') as image_file:
         content = image_file.read()
 
+    # content = file.read()
+
     image = vision.Image(content=content)
 
     response = client.landmark_detection(image=image)
@@ -108,6 +114,8 @@ def detect_logos(path):
     with io.open(path, 'rb') as image_file:
         content = image_file.read()
 
+    # content = file.read()
+
     image = vision.Image(content=content)
 
     response = client.logo_detection(image=image)
@@ -128,10 +136,14 @@ def detect_safe_search(path):
     """Detects unsafe features in the file."""
     from google.cloud import vision
     import io
+
+    
     client = vision.ImageAnnotatorClient()
 
     with io.open(path, 'rb') as image_file:
         content = image_file.read()
+
+    # content = file.read()
 
     image = vision.Image(content=content)
 
@@ -173,7 +185,6 @@ def detect_safe_search(path):
     return (data)
 
 
-# results = []
 
 
 @app.route("/members")
@@ -195,6 +206,10 @@ def upload():
     blob.upload_from_string(file.read(), content_type=file.content_type)
     blob.download_to_filename(filename)
 
+    path = Path(filename)
+    while path.is_file()==False:
+        pass
+
     # filename = 'flask-server/images/analysisImage.png'
     # filename2 = 'front-end/src/component/counterup/analysisImage.png'
     # file.save(filename2)
@@ -207,8 +222,19 @@ def upload():
     #     f.write(r.content)
     # user provides url in query string
 
-    # global results
+    global results
     # results = []
+
+    # response = requests.get("https://storage.googleapis.com/analysisimagebucket/"+filename)
+    # image_bytes = io.BytesIO(response.content)
+
+    # response = "https://storage.googleapis.com/analysisimagebucket/"+filename
+
+
+    results = (detect_safe_search(filename))
+    results.append(filename)
+    print(results)
+    os.remove(filename)
     
     return "done"
     # return redirect(url_for('analysis'))
@@ -217,10 +243,6 @@ def upload():
 @app.route("/analyse")
 @cross_origin()
 def analysis():
-    results = (detect_safe_search(filename))
-    results.append(filename)
-    print(results)
-    os.remove(filename)
     return jsonify(dataAn=results)
     
 # if __name__ == "__main__":
