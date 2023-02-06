@@ -234,7 +234,7 @@ def upload():
     results = (detect_safe_search(filename))
     results.append(filename)
     print(results)
-    os.remove(filename)
+    # os.remove(filename)
     
     return "done"
     # return redirect(url_for('analysis'))
