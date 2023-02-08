@@ -14,29 +14,19 @@ app = Flask(__name__, static_folder='front-end/build', static_url_path='')
 
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'yttnanlaysis-4919c47df72c.json'
 client = vision.ImageAnnotatorClient()
-# client = vision.ImageAnnotatorClient()
-###################
 # Imports the Google Cloud client library
 # Instantiates a client
 storage_client = storage.Client()
 # # The name for the new bucket
 bucket_name = "analysisimagebucket"
-# Creates the new bucket
-# bucket = storage_client.create_bucket(bucket_name)
-#####################
+
 
 
 CORS(app, support_credentials=True)
 
 emails = []
-results = []
-
-
-
 filename = ''
 
-# os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = str(
-#     os.getcwd())+'/flask-server/yttnanlaysis-4919c47df72c.json'
 
 
 def detect_faces(path):
@@ -199,55 +189,28 @@ def upload():
     file = request.files['file']
     global filename
     filename = str(uuid.uuid4())+'.png'
-
     storage_client = storage.Client()
     bucket = storage_client.get_bucket(bucket_name)
     blob = bucket.blob(filename)
     blob.upload_from_string(file.read(), content_type=file.content_type)
     blob.download_to_filename(filename)
-
-    path = Path(filename)
-    while path.is_file()==False:
-        pass
-
-    # filename = 'flask-server/images/analysisImage.png'
-    # filename2 = 'front-end/src/component/counterup/analysisImage.png'
-    # file.save(filename2)
-    # print(file)
-
-    # for image in (os.listdir(str(os.getcwd())+"/flask-server/images")):
-    # r = requests.get(
-    #     'https://storage.cloud.google.com/analysisimagebucket/image1.png')
-    # with open('analysisImage.png', 'wb') as f:
-    #     f.write(r.content)
-    # user provides url in query string
-
-    global results
-    # results = []
-
-    # response = requests.get("https://storage.googleapis.com/analysisimagebucket/"+filename)
-    # image_bytes = io.BytesIO(response.content)
-
-    # response = "https://storage.googleapis.com/analysisimagebucket/"+filename
-
-
-    results = (detect_safe_search(filename))
-    results.append(filename)
-    print(results)
-    # os.remove(filename)
-    
     return "done"
-    # return redirect(url_for('analysis'))
+    
 
 
 @app.route("/analyse")
 @cross_origin()
 def analysis():
+    path = Path(filename)
+    while path.is_file()==False:
+        pass
+    results = (detect_safe_search(filename))
+    results.append(filename)
+    # print(results)
+    os.remove(filename)
+
     return jsonify(dataAn=results)
     
-# if __name__ == "__main__":
-#     app.run(debug=True)
-
 
 @app.route("/emails", methods=['POST'])
 @cross_origin()
