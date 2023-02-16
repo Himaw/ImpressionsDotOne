@@ -247,4 +247,4 @@ if __name__ == "__main__":
     # os.chdir("./front-end")
     # os.system("npm run build")
     # os.chdir("../")
-    app.run(threaded=True)
+    app.run(debug=True)
