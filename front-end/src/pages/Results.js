@@ -32,7 +32,7 @@ const Results = () => {
   //     });
   // }, []);
   useEffect(async () => {
-    await fetch("/analyse")
+    await fetch("/analyse/<username>")
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

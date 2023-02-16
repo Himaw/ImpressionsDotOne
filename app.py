@@ -6,11 +6,15 @@ import json
 import uuid
 import random
 import requests
-from flask import Flask, request, jsonify, redirect, url_for
+from flask import Flask, request, jsonify, redirect, url_for, session
 from flask_cors import CORS, cross_origin
 from flask import send_from_directory
 from pathlib import Path
+from datetime import timedelta
 app = Flask(__name__, static_folder='front-end/build', static_url_path='')
+app.config['SECRET_KEY'] = os.urandom(24)
+app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days = 7)
+
 
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'yttnanlaysis-4919c47df72c.json'
 client = vision.ImageAnnotatorClient()
@@ -25,7 +29,7 @@ bucket_name = "analysisimagebucket"
 CORS(app, support_credentials=True)
 
 emails = []
-filename = ''
+
 
 
 
@@ -183,29 +187,30 @@ def members():
     return {"test": ["12", "89%", "32%"]}
 
 
-@app.route("/uploads", methods=['GET', 'POST'])
+@app.route("/uploads/<username>", methods=['GET', 'POST'])
 @cross_origin()
-def upload():
+def upload(username):
     file = request.files['file']
     global filename
-    filename = str(uuid.uuid4())+'.png'
+    filename[username]= str(uuid.uuid4())+'.png'
     storage_client = storage.Client()
     bucket = storage_client.get_bucket(bucket_name)
-    blob = bucket.blob(filename)
+    blob = bucket.blob(filename[username])
     blob.upload_from_string(file.read(), content_type=file.content_type)
-    blob.download_to_filename(filename)
+    blob.download_to_filename(filename[username])
     return "done"
     
 
 
-@app.route("/analyse")
+@app.route("/analyse/<username>", methods=['GET', 'POST'])
 @cross_origin()
-def analysis():
-    path = Path(filename)
+def analysis(username):
+    
+    path = Path(filename[username])
     while path.is_file()==False:
         pass
-    results = (detect_safe_search(filename))
-    results.append(filename)
+    results = (detect_safe_search(filename[username]))
+    results.append(filename[username])
     # print(results)
     # os.remove(filename)
 
@@ -233,17 +238,45 @@ def get_emails():
     return emails
 
 
-@app.route('/', defaults={'path': ''})
-@app.route('/<path:path>')
+# @app.route('/', defaults={'path': ''})
+# @app.route('/<path:path>')
+# @cross_origin()
+# def serve(path):
+#     if path != "" and os.path.exists(app.static_folder + '/' + path):
+#         return send_from_directory(app.static_folder, path)
+#     else:
+#         return send_from_directory(app.static_folder, 'index.html')
+
+# login
+@app.route('/<username>', methods=['GET', 'POST'])
 @cross_origin()
-def serve(path):
-    if path != "" and os.path.exists(app.static_folder + '/' + path):
-        return send_from_directory(app.static_folder, path)
+def serve(path,username):
+    if username in session:
+        print(session.keys())
+        if path != "" and os.path.exists(app.static_folder + '/' + path):
+            return send_from_directory(app.static_folder, path)
+        else:
+            return send_from_directory(app.static_folder, 'index.html')
+
+        
+        # return 'hello {}'.format(username)
     else:
-        return send_from_directory(app.static_folder, 'index.html')
+        session[username] = username
+        # generate this user's variable
+        filename[username] = 0
+        print(session.keys())
+        return 'login as {}'.format(username)
+
+# logout
+@app.route('/logout/<username>', methods=['GET', 'POST'])
+def logout(username):
+    session.pop(username)
+    print(session.keys())
+    return '{} logout!'.format(username)
 
 
 if __name__ == "__main__":
+    filename = {}
     # os.chdir("./front-end")
     # os.system("npm run build")
     # os.chdir("../")

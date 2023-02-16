@@ -20,7 +20,7 @@ const BannerTwo = () => {
     method: "POST",
     crossOrigin: "anonymous",
     multiple: false,
-    action: "https://impressionsone.onrender.com/uploads",
+    action: "https://impressionsone.onrender.com/uploads/<username>",
     // action: "http://127.0.0.1:5000/uploads",
     onChange(info) {
       const { status } = info.file;
