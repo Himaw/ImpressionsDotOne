@@ -26,8 +26,6 @@ CORS(app, support_credentials=True)
 
 emails = []
 filename = ''
-filenames = []
-count = 0
 
 
 
@@ -190,11 +188,7 @@ def members():
 def upload():
     file = request.files['file']
     global filename
-    global filenames
-    global count
-    count = count+1
     filename = str(uuid.uuid4())+'.png'
-    filenames.append(filename)
     storage_client = storage.Client()
     bucket = storage_client.get_bucket(bucket_name)
     blob = bucket.blob(filename)
@@ -207,11 +201,11 @@ def upload():
 @app.route("/analyse")
 @cross_origin()
 def analysis():
-    path = Path(filenames[count-1])
+    path = Path(filename)
     while path.is_file()==False:
         pass
-    results = (detect_safe_search(filenames[count-1]))
-    results.append(filenames[count-1])
+    results = (detect_safe_search(filename))
+    results.append(filename)
     # print(results)
     # os.remove(filename)
 
