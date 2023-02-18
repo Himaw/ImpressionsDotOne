@@ -22,7 +22,7 @@ const BannerTwo = () => {
     method: "POST",
     crossOrigin: "anonymous",
     multiple: false,
-    action: "https://www.impressions.one/uploads",
+    action: "https://impressionsone.onrender.com/uploads",
     // action: "http://127.0.0.1:5000/uploads",
     onChange(info) {
       const { status } = info.file;
@@ -34,7 +34,7 @@ const BannerTwo = () => {
       if (status === "done") {
         setCount(1);
         setUid(info.file.originFileObj.uid)
-      fetch('https://www.impressions.one/uid', {
+      fetch('/uid', {
         method: 'POST',
         // We convert the React state to JSON and send it as the POST body
         body: JSON.stringify(info.file.originFileObj.uid)
