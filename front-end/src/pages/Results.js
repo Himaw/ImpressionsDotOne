@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect} from "react";
 import FooterOne from "../common/footer/FooterOne";
 import { BackTop } from "antd";
+import { useLocation } from 'react-router-dom';
 import HeaderTwo from "../common/header/HeaderTwo";
 import SEO from "../common/SEO";
 import BcrumbBannerOne from "../elements/breadcrumb/BcrumbBannerOne";
 import CtaLayoutOne from "../component/cta/CtaLayoutOne";
 import ColorSwitcher from "../elements/switcher/ColorSwitcher";
 import CounterUpTwo from "../component/counterup/CounterUpTwo";
+import BannerTwo from "../component/banner/BannerTwo";
 import TeamOne from "../component/team/TeamOne";
 import VideoTwo from "../component/video/VideoTwo";
 import CaseStudyProp from "../component/casestudy/CaseStudyProp";
@@ -15,9 +17,21 @@ import { AnimationOnScroll } from "react-animation-on-scroll";
 import { Alert, Space, Spin } from "antd";
 import axios from "axios";
 
+
+
+
 const Results = () => {
+  
+
   const [analysisData, setAnalysisData] = useState({});
+  // const [uidState, setUidState] = useState();
   const [isLoading, setIsLoading] = useState(true);
+
+  const location = useLocation();
+  const uid = location.state;
+  console.log(uid);
+
+
   // useEffect(() => {
   //   axios
   //     .get("https://impressionsone.herokuapp.com/analyse")
@@ -35,13 +49,36 @@ const Results = () => {
     await fetch("/analyse")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        setAnalysisData(data.dataAn);
+        
+        
+        console.log(data)
+        {
+          for (let i=0; i<data.dataAn.length; i++){
+            data.dataAn[i][6] == uid && 
+            setAnalysisData(data.dataAn[i]);
+            console.log("Hima");
+            fetch('https://impressionsone.onrender.com/delete', {
+              method: 'POST',
+              // We convert the React state to JSON and send it as the POST body
+              body: JSON.stringify(uid)
+            }).then(function(response) {
+              console.log(response)
+              return response.json();
+            });
+      
+          
+        }}
+        
         setIsLoading(false);
+        // {
+        //   isLoading==false &&
+        //   f
+        // }
         // console.log()
       })
       .catch((error) => {
-        console.log("Hima");
+        
+        console.log("Error");
         console.log(error);
       });
   }, []);

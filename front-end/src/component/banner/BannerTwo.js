@@ -8,12 +8,14 @@ import { BackTop } from "antd";
 import ScrollToTop from "../scrollToTop/ScrollToTop";
 import { icons } from "@ant-design/icons";
 import { message, Upload } from "antd";
+import axios from "axios";
 const { Dragger } = Upload;
 
 const BannerTwo = () => {
   // const [src,setSrc] = useState(null)
 
   const [count, setCount] = useState(0);
+  const [uid, setUid] = useState('');
 
   const props = {
     name: "file",
@@ -24,12 +26,25 @@ const BannerTwo = () => {
     // action: "http://127.0.0.1:5000/uploads",
     onChange(info) {
       const { status } = info.file;
+      
       setCount(0);
       if (status !== "uploading") {
         console.log(info.file, info.fileList);
       }
       if (status === "done") {
         setCount(1);
+        setUid(info.file.originFileObj.uid)
+      fetch('https://impressionsone.onrender.com/uid', {
+        method: 'POST',
+        // We convert the React state to JSON and send it as the POST body
+        body: JSON.stringify(info.file.originFileObj.uid)
+      }).then(function(response) {
+        console.log(response)
+        return response.json();
+      });
+        
+        
+        // console.log(info.file.originFileObj.uid);
 
         message.success(`${info.file.name} file uploaded successfully.`);
       } else if (status === "error") {
@@ -104,7 +119,10 @@ const BannerTwo = () => {
                   </Link> */}
                   {count === 0 ? null : (
                     <Link
-                      to="/results"
+                    
+                    to="/results"
+                    state= {uid} 
+                
                       className="axil-btn btn-fill-white btn-large bannerBtn"
                     >
                       Analyse
