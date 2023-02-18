@@ -57,7 +57,7 @@ const Results = () => {
             data.dataAn[i][6] == uid && 
             setAnalysisData(data.dataAn[i]);
             console.log("Hima");
-            fetch('https://impressionsone.onrender.com/delete', {
+            fetch('https://www.impressions.one/delete', {
               method: 'POST',
               // We convert the React state to JSON and send it as the POST body
               body: JSON.stringify(uid)

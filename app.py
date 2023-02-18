@@ -238,7 +238,7 @@ def uid():
     print(session['results'])
     print(results_main)
 
-    return results_main
+    return "done"
 
 
 
